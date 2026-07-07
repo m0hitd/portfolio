@@ -1,10 +1,3 @@
-/* ==========================================
-   MINIMAL JAVASCRIPT — no fancy animations
-   ========================================== */
-
-// ==========================================
-// TYPING ANIMATION (kept — static text cycling)
-// ==========================================
 class TypingAnimation {
     constructor(element, phrases) {
         this.element = element;
@@ -150,6 +143,174 @@ function initSmoothScroll() {
 }
 
 // ==========================================
+// GALLERY CAROUSEL
+// ==========================================
+function initGallery() {
+    const carousel = document.getElementById('galleryCarousel');
+    const prevBtn = document.getElementById('galleryPrev');
+    const nextBtn = document.getElementById('galleryNext');
+    const dotsContainer = document.getElementById('galleryDots');
+    const filters = document.querySelectorAll('.gallery-filter');
+    const slides = document.querySelectorAll('.gallery-slide');
+
+    if (!carousel) return;
+
+    const slideWidth = 384; // 360px + 24px gap
+
+    // Build dot indicators
+    function buildDots() {
+        dotsContainer.innerHTML = '';
+        const visibleSlides = carousel.querySelectorAll('.gallery-slide:not(.hidden)');
+        visibleSlides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.classList.add('gallery-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                const targetSlide = visibleSlides[i];
+                carousel.scrollTo({ left: targetSlide.offsetLeft - carousel.offsetLeft, behavior: 'smooth' });
+            });
+            dotsContainer.appendChild(dot);
+        });
+    }
+
+    // Update active dot on scroll
+    function updateDots() {
+        const dots = dotsContainer.querySelectorAll('.gallery-dot');
+        const visibleSlides = carousel.querySelectorAll('.gallery-slide:not(.hidden)');
+        const scrollLeft = carousel.scrollLeft;
+
+        let activeIndex = 0;
+        visibleSlides.forEach((slide, i) => {
+            if (slide.offsetLeft - carousel.offsetLeft <= scrollLeft + 40) {
+                activeIndex = i;
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeIndex);
+        });
+    }
+
+    carousel.addEventListener('scroll', updateDots);
+
+    // Arrow navigation
+    prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({ left: slideWidth, behavior: 'smooth' });
+    });
+
+    // Filters
+    filters.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filters.forEach(f => f.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            slides.forEach(slide => {
+                if (filter === 'all' || slide.dataset.category === filter) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+
+            // Reset scroll and rebuild dots
+            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            setTimeout(buildDots, 100);
+        });
+    });
+
+    buildDots();
+}
+
+// ==========================================
+// LIGHTBOX
+// ==========================================
+function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const closeBtn = document.getElementById('lightboxClose');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+
+    if (!lightbox) return;
+
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function getVisibleSlides() {
+        return Array.from(document.querySelectorAll('.gallery-slide:not(.hidden)'));
+    }
+
+    function openLightbox(index) {
+        const visibleSlides = getVisibleSlides();
+        currentImages = visibleSlides.map(slide => ({
+            src: slide.querySelector('img').src,
+            alt: slide.querySelector('img').alt,
+            caption: slide.querySelector('.gallery-caption h4').textContent
+        }));
+        currentIndex = index;
+        showImage();
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function showImage() {
+        const img = currentImages[currentIndex];
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.caption;
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        showImage();
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        showImage();
+    }
+
+    // Click on image to open
+    document.querySelectorAll('.gallery-img-wrapper').forEach((wrapper, i) => {
+        wrapper.addEventListener('click', () => {
+            const slide = wrapper.closest('.gallery-slide');
+            const visibleSlides = getVisibleSlides();
+            const idx = visibleSlides.indexOf(slide);
+            if (idx !== -1) openLightbox(idx);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+
+    // Close on backdrop click
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+    });
+}
+
+// ==========================================
 // INITIALIZE
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -168,6 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
     initScrollTop();
     initSmoothScroll();
+    initGallery();
+    initLightbox();
 
     // Animate counters on load
     animateCounters();

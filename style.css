@@ -396,12 +396,12 @@ img {
     /* Lower avatar head vertically */
 }
 
-/* LARGE 380px SPOTLIGHT POINTER MASK RADIUS */
+/* SPOTLIGHT POINTER MASK RADIUS */
 .hero-reveal-img {
     z-index: 2;
-    -webkit-mask-image: radial-gradient(circle 380px at var(--x, 50%) var(--y, 50%),
+    -webkit-mask-image: radial-gradient(circle 160px at var(--x, 50%) var(--y, 50%),
             black 0%, black 60%, transparent 100%);
-    mask-image: radial-gradient(circle 380px at var(--x, 50%) var(--y, 50%),
+    mask-image: radial-gradient(circle 160px at var(--x, 50%) var(--y, 50%),
             black 0%, black 60%, transparent 100%);
     transition: mask-position 0.05s linear;
 }
@@ -413,7 +413,7 @@ img {
     max-width: var(--container-width);
     width: 100%;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 20px;
     pointer-events: none;
 }
 
@@ -503,6 +503,27 @@ img {
     transform: translate(3px, -3px) scale(1.05);
     background: #4ab2c9;
     box-shadow: 0 6px 20px rgba(93, 188, 210, 0.5);
+}
+
+/* Hero Name — Right Side */
+.hero-name-right {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.hero-name-text {
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(28, 28, 28, 0.35);
+    user-select: none;
+    white-space: nowrap;
 }
 
 /* Hero bottom fade into Wellfound light theme */
@@ -1071,8 +1092,8 @@ img {
 }
 
 .cert-badge {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -1082,6 +1103,19 @@ img {
     background: #f1f5f9;
     border: 1px solid #e2e8f0;
     color: var(--accent-blue);
+    overflow: hidden;
+}
+
+.cert-badge.cert-badge-img {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.cert-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .cert-info h3 {
@@ -1113,6 +1147,139 @@ img {
 .cert-meta i {
     color: var(--accent-blue);
     font-size: 0.7rem;
+}
+
+/* ==========================================
+   GOOGLE CLOUD SKILLS BADGES SECTION
+   ========================================== */
+.badges-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    text-align: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.badges-category-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badges-category-title i {
+    color: var(--accent-blue);
+    font-size: 1.1rem;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.badge-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 16px 18px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.badge-card:hover {
+    border-color: #000000;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+}
+
+.badge-card-icon {
+    margin-bottom: 14px;
+}
+
+.badge-card-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.badge-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 14px;
+}
+
+.badge-card-org {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+}
+
+.badge-card-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.35;
+}
+
+.badge-card-date {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 4px;
+}
+
+.badge-card-date i {
+    font-size: 0.65rem;
+    color: var(--accent-blue);
+}
+
+.badge-type-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 4px;
+    margin-top: auto;
+}
+
+.badge-type-label.skill {
+    color: #475569;
+    background: #f1f5f9;
+    border-top: 2px solid #e2e8f0;
+}
+
+.badge-type-label.completion {
+    color: #166534;
+    background: #f0fdf4;
+    border-top: 2px solid #bbf7d0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.badge-type-label.completion i {
+    font-size: 0.7rem;
+    color: #22c55e;
 }
 
 /* ==========================================
@@ -1348,11 +1515,41 @@ img {
 }
 
 /* ==========================================
+   PROJECT HIDDEN / VISIBLE TOGGLE
+   ========================================== */
+.project-hidden {
+    display: none;
+}
+
+.project-hidden.project-visible {
+    display: block;
+    animation: fadeSlideUp 0.5s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
    RESPONSIVE DESIGN
    ========================================== */
+
+/* ---------- TABLET (≤ 1024px) ---------- */
 @media (max-width: 1024px) {
     .hero-title {
-        font-size: 2.6rem;
+        font-size: 2.4rem;
+    }
+
+    .hero-content {
+        padding: 0 28px;
     }
 
     .about-grid {
@@ -1372,60 +1569,404 @@ img {
         grid-template-columns: 1fr;
     }
 
-    .marquee-portal {
-        width: 100px;
+    .cert-card {
+        padding: 18px;
     }
 }
 
+/* ---------- MOBILE (≤ 768px) ---------- */
 @media (max-width: 768px) {
     :root {
         --section-padding: 48px 0;
+        --container-width: 100%;
+    }
+
+    .container {
+        padding: 0 18px;
+    }
+
+    /* --- NAVBAR --- */
+    .navbar {
+        padding: 14px 0;
+    }
+
+    .navbar.scrolled {
+        padding: 10px 0;
+    }
+
+    .nav-container {
+        padding: 0 18px;
+    }
+
+    /* Mobile nav dropdown — fullscreen overlay */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        border-radius: 0;
+        padding: 100px 32px 40px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: none;
+        box-shadow: none;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .nav-links.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+    }
+
+    .nav-link {
+        font-size: 1.15rem;
+        padding: 14px 24px;
+        width: 100%;
+        text-align: center;
+        border-radius: 12px;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        background: #f1f5f9;
+    }
+
+    .nav-toggle {
+        z-index: 1002;
+    }
+
+    /* --- HERO --- */
+    .hero {
+        min-height: 100vh;
+        min-height: 100dvh;
+        align-items: flex-end;
+    }
+
+    .hero-images {
+        padding-top: 0;
+    }
+
+    .hero-base-img img,
+    .hero-reveal-img img {
+        object-position: center 30%;
+    }
+
+    .hero-content {
+        padding: 0 20px;
+        margin-bottom: 60px;
+    }
+
+    .hero-text-block {
+        max-width: 100%;
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.85rem;
+        line-height: 1.25;
     }
 
     .hero-subtitle {
-        font-size: 0.95rem;
+        font-size: 0.88rem;
+        margin-bottom: 22px;
     }
 
+    .hero-cta-group {
+        gap: 12px;
+    }
+
+    .cta-button-pill {
+        padding: 12px 28px;
+        font-size: 0.88rem;
+    }
+
+    .cta-arrow-circle {
+        width: 44px;
+        height: 44px;
+    }
+
+    .hero-bottom-fade {
+        height: 100px;
+    }
+
+    .hero-name-right {
+        display: none;
+    }
+
+    /* --- MARQUEE --- */
+    .marquee-section {
+        padding: 20px 0;
+    }
+
+    .marquee-text {
+        font-size: 0.85rem;
+    }
+
+    /* --- SECTION TITLES --- */
     .section-title {
-        font-size: 1.4rem;
-        margin-bottom: 28px;
+        font-size: 1.35rem;
+        margin-bottom: 24px;
     }
 
+    .section-number {
+        font-size: 0.88rem;
+    }
+
+    /* --- ABOUT --- */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .about-text p {
+        font-size: 0.9rem;
+    }
+
+    .info-card {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .info-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+
+    /* --- EXPERIENCE / TIMELINE --- */
     .timeline {
-        padding-left: 28px;
+        padding-left: 22px;
+        border-left-width: 2px;
     }
 
     .timeline-dot {
-        left: -34px;
+        left: -28px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .timeline-content {
+        padding: 18px;
     }
 
     .timeline-header {
         flex-direction: column;
+        gap: 8px;
     }
 
-    .timeline-content {
-        padding: 22px;
+    .timeline-role {
+        font-size: 1.05rem;
     }
 
-    .marquee-portal {
-        width: 70px;
-        opacity: 0.6;
+    .timeline-company {
+        font-size: 0.82rem;
+        flex-wrap: wrap;
     }
 
-    .marquee-text {
+    .timeline-location {
+        margin-left: 0;
+        display: flex;
+    }
+
+    .timeline-date {
+        font-size: 0.78rem;
+    }
+
+    .timeline-details li {
+        font-size: 0.85rem;
+    }
+
+    .timeline-tags {
+        gap: 6px;
+    }
+
+    .tag {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+    }
+
+    /* --- PROJECTS --- */
+    .projects-heading {
+        gap: 12px;
+    }
+
+    .projects-heading-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .projects-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 18px;
+    }
+
+    /* Filter bar horizontal scroll on mobile */
+    .wf-filter-bar {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        width: 100%;
+        justify-content: flex-start;
+        padding: 5px 6px;
+        gap: 4px;
+        margin-bottom: 28px;
+    }
+
+    .wf-filter-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .wf-pill {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .project-card {
+        padding: 20px;
+    }
+
+    .project-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.05rem;
+    }
+
+    .project-description {
+        font-size: 0.85rem;
+        margin-bottom: 14px;
+    }
+
+    .project-tech span {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+
+    .view-more-btn {
+        padding: 10px 26px;
+        font-size: 0.85rem;
+    }
+
+    /* --- SKILLS --- */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .skill-category {
+        padding: 18px;
+    }
+
+    .skill-category-header {
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .skill-category-header h3 {
         font-size: 0.9rem;
     }
 
+    .skill-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    .skill-tag {
+        font-size: 0.78rem;
+        padding: 5px 12px;
+        gap: 5px;
+    }
+
+    .skill-tag i {
+        font-size: 0.78rem;
+    }
+
+    /* --- CERTIFICATIONS --- */
+    .certs-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .cert-card {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .cert-badge {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
+
+    .cert-info h3 {
+        font-size: 0.85rem;
+    }
+
+    .cert-issuer {
+        font-size: 0.78rem;
+    }
+
+    .cert-meta {
+        gap: 12px;
+        font-size: 0.7rem;
+    }
+
+    /* --- CTA SECTION --- */
+    .cta-section {
+        min-height: 80vh;
+        min-height: 80dvh;
+    }
+
+    .cta-card-container {
+        padding: 0 18px;
+    }
+
+    .cta-mascot img {
+        width: 90px;
+    }
+
+    .cta-mascot {
+        margin-bottom: -30px;
+    }
+
+    .magic-card {
+        border-radius: 16px;
+        max-width: 100%;
+    }
+
     .magic-card-content {
-        padding: 36px 24px;
+        padding: 32px 22px;
+    }
+
+    .cta-eyebrow {
+        font-size: 0.7rem;
     }
 
     .cta-headline {
-        font-size: 1.4rem;
+        font-size: 1.35rem;
+    }
+
+    .cta-description {
+        font-size: 0.88rem;
+        margin-bottom: 22px;
     }
 
     .cta-links {
@@ -1437,24 +1978,193 @@ img {
         display: none;
     }
 
+    .cta-links a {
+        font-size: 0.85rem;
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+        padding: 28px 0;
+    }
+
     .footer-content {
         flex-direction: column;
-        gap: 18px;
+        gap: 16px;
         text-align: center;
+    }
+
+    .footer p {
+        font-size: 0.82rem;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+    .footer-links a {
+        width: 36px;
+        height: 36px;
+        font-size: 0.88rem;
+    }
+
+    /* --- SCROLL TO TOP --- */
+    .scroll-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
     }
 }
 
+/* ---------- SMALL MOBILE (≤ 480px) ---------- */
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 1.6rem;
+    .container {
+        padding: 0 14px;
     }
 
-    .projects-heading-icon {
+    /* Hero */
+    .hero-title {
+        font-size: 1.55rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.82rem;
+    }
+
+    .hero-content {
+        padding: 0 16px;
+        margin-bottom: 48px;
+    }
+
+    .cta-button-pill {
+        padding: 11px 24px;
+        font-size: 0.82rem;
+    }
+
+    .cta-arrow-circle {
         width: 40px;
         height: 40px;
     }
 
-    .marquee-portal {
-        display: none;
+    .cta-arrow-circle svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Section */
+    .section-title {
+        font-size: 1.2rem;
+        gap: 8px;
+    }
+
+    .section-number {
+        font-size: 0.8rem;
+    }
+
+    /* About */
+    .about-text p {
+        font-size: 0.85rem;
+    }
+
+    .info-card h4 {
+        font-size: 0.82rem;
+    }
+
+    .info-card p {
+        font-size: 0.8rem;
+    }
+
+    .info-meta {
+        font-size: 0.72rem;
+    }
+
+    /* Projects heading icon */
+    .projects-heading-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Timeline */
+    .timeline {
+        padding-left: 18px;
+    }
+
+    .timeline-dot {
+        left: -24px;
+        width: 10px;
+        height: 10px;
+        border-width: 2px;
+    }
+
+    .timeline-content {
+        padding: 14px;
+    }
+
+    .timeline-role {
+        font-size: 0.98rem;
+    }
+
+    .timeline-details li {
+        font-size: 0.82rem;
+        gap: 8px;
+    }
+
+    /* CTA */
+    .magic-card-content {
+        padding: 26px 18px;
+    }
+
+    .cta-headline {
+        font-size: 1.2rem;
+    }
+
+    .cta-description {
+        font-size: 0.82rem;
+    }
+
+    /* Marquee */
+    .marquee-text {
+        font-size: 0.78rem;
+    }
+
+    .marquee-section {
+        padding: 16px 0;
+    }
+
+    /* Scroll top */
+    .scroll-top {
+        bottom: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* ---------- VERY SMALL (≤ 360px) ---------- */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.35rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.78rem;
+    }
+
+    .cta-button-pill {
+        padding: 10px 20px;
+        font-size: 0.78rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+    }
+
+    .magic-card-content {
+        padding: 22px 14px;
+    }
+
+    .cta-headline {
+        font-size: 1.1rem;
     }
 }

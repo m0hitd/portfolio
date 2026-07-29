@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <canvas id="particleCanvas"></canvas>
+    <!-- ============================== NAVBAR ============================== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#hero" class="nav-logo">
@@ -29,107 +29,73 @@
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#certifications" class="nav-link">Certifications</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#cta" class="nav-link">Contact</a></li>
             </ul>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
+                <span></span><span></span>
             </button>
         </div>
     </nav>
 
+    <!-- ============================== HERO SECTION ============================== -->
     <section class="hero" id="hero">
+        <!-- Preload skeleton -->
+        <div class="hero-skeleton" id="heroSkeleton">
+            <div class="skeleton-pulse"></div>
+        </div>
+
+        <!-- Stacked image layers -->
+        <div class="hero-images" id="heroImages" style="opacity: 0;">
+            <div class="hero-base-img">
+                <img src="images/transparent-base.png" alt="Voxel avatar" id="heroBaseImg">
+            </div>
+            <div class="hero-reveal-img" id="heroReveal">
+                <img src="images/transparent-flame.png" alt="Voxel avatar with flame" id="heroFlameImg">
+            </div>
+        </div>
+
+        <!-- Hero content overlay -->
         <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-cloud"></i>
-                <span>GCP Certified Associate Cloud Engineer</span>
-            </div>
-            <h1 class="hero-title">
-                Hi, I'm <span class="gradient-text">Mohit Debnath</span>
-            </h1>
-            <div class="hero-subtitle">
-                <span class="typing-prefix">I build </span>
-                <span class="typing-text" id="typingText"></span>
-                <span class="cursor">|</span>
-            </div>
-            <p class="hero-description">
-                Certified Google Cloud Associate Cloud Engineer with practical experience creating production-level
-                Kubernetes deployments using GKE. Built and deployed infrastructure tooling used by over 20,000
-                end-users. Focused skills in GCP, Terraform, and CI/CD automation.
-            </p>
-            <div class="hero-actions">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i> View Projects
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                    <i class="fas fa-paper-plane"></i> Get in Touch
-                </a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number" data-target="20">0</span><span class="stat-suffix">K+</span>
-                    <span class="stat-label">End Users Reached</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="35">0</span><span class="stat-suffix">%</span>
-                    <span class="stat-label">Processing Time Reduced</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
-                    <span class="stat-label">Automated Builds</span>
+            <div class="hero-text-block">
+                <h1 class="hero-title" id="heroTitle">
+                    Hello there, I'm a Cloud Engineer and a DevOps specialist.
+                </h1>
+                <p class="hero-subtitle">Certified GCP Associate Cloud Engineer &bull; Building resilient, scalable infrastructure</p>
+                <div class="hero-cta-group">
+                    <a href="https://drive.google.com/file/d/1XIN5xd1cHEXZfPwoci3s09zBoMhvMt08/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="cta-button-pill" id="ctaButton" aria-label="View Resume">
+                        <span>View Resume</span>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1XIN5xd1cHEXZfPwoci3s09zBoMhvMt08/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="cta-arrow-circle" aria-label="Resume Link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-dots">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                    </div>
-                    <span class="terminal-title">mohit@cloud:~</span>
-                </div>
-                <div class="terminal-body" id="terminalBody">
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="command">kubectl get pods --all-namespaces</span>
-                    </div>
-                    <div class="terminal-line output">
-                        <span>NAMESPACE &nbsp;&nbsp; NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            READY &nbsp; STATUS</span>
-                    </div>
-                    <div class="terminal-line output">
-                        <span>production &nbsp; api-deploy-7d &nbsp; 1/1 &nbsp;&nbsp;&nbsp; <span
-                                class="green-text">Running</span></span>
-                    </div>
-                    <div class="terminal-line output">
-                        <span>production &nbsp; web-deploy-3f &nbsp; 1/1 &nbsp;&nbsp;&nbsp; <span
-                                class="green-text">Running</span></span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="command">terraform plan</span>
-                    </div>
-                    <div class="terminal-line output">
-                        <span><span class="green-text">Plan:</span> 12 to add, 0 to change, 0 to destroy.</span>
-                    </div>
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="command">gcloud compute instances list</span>
-                    </div>
-                    <div class="terminal-line output">
-                        <span><span class="green-text">✓</span> All instances healthy. Uptime: 99.97%</span>
-                    </div>
-                    <div class="terminal-line active">
-                        <span class="prompt">$</span>
-                        <span class="cursor-blink">_</span>
-                    </div>
-                </div>
+
+        <!-- Bottom gradient fade -->
+        <div class="hero-bottom-fade"></div>
+    </section>
+
+    <!-- ============================== MARQUEE (LEFT) ============================== -->
+    <section class="marquee-section" id="marqueeLeft">
+        <div class="marquee-track">
+            <div class="marquee--textwrapper-hold">
+                <span class="marquee-text">GCP &bull; Kubernetes &bull; Docker &bull; Terraform &bull; CI/CD &bull; Linux &bull; Helm &bull; Jenkins &bull; GitHub Actions &bull; Python &bull; Node.js &bull; REST APIs &bull; Prometheus &bull; Grafana &bull; Cloud Functions &bull; VPC &bull; IAM &bull; Load Balancing &bull; GKE &bull; Serverless &bull;&nbsp;</span>
+                <span class="marquee-text">GCP &bull; Kubernetes &bull; Docker &bull; Terraform &bull; CI/CD &bull; Linux &bull; Helm &bull; Jenkins &bull; GitHub Actions &bull; Python &bull; Node.js &bull; REST APIs &bull; Prometheus &bull; Grafana &bull; Cloud Functions &bull; VPC &bull; IAM &bull; Load Balancing &bull; GKE &bull; Serverless &bull;&nbsp;</span>
+            </div>
+        </div>
+        <div class="marquee-track">
+            <div class="marquee--textwrapper-hold reverse">
+                <span class="marquee-text">React &bull; Next.js &bull; TypeScript &bull; Vite &bull; Capacitor.js &bull; Shell Scripting &bull; Infrastructure as Code &bull; DevSecOps &bull; Monitoring &bull; Observability &bull; Cloud Security &bull; Networking &bull; Automation &bull; Microservices &bull; Container Orchestration &bull;&nbsp;</span>
+                <span class="marquee-text">React &bull; Next.js &bull; TypeScript &bull; Vite &bull; Capacitor.js &bull; Shell Scripting &bull; Infrastructure as Code &bull; DevSecOps &bull; Monitoring &bull; Observability &bull; Cloud Security &bull; Networking &bull; Automation &bull; Microservices &bull; Container Orchestration &bull;&nbsp;</span>
             </div>
         </div>
     </section>
 
+    <!-- ============================== ABOUT SECTION ============================== -->
     <section class="section" id="about">
         <div class="container">
             <h2 class="section-title">
@@ -143,7 +109,8 @@
                         <strong>Cyber Security</strong> at G.H. Raisoni College of Engineering (7.49 CGPA).
                     </p>
                     <p>
-                        I have practical experience creating <span class="highlight">production-level Kubernetes deployments</span>
+                        I have practical experience creating <span class="highlight">production-level Kubernetes
+                            deployments</span>
                         using GKE, and have built and deployed <span class="highlight">infrastructure tooling</span>
                         used by over <strong>20,000 end-users</strong>. My focus is on
                         <span class="highlight">GCP</span>, <span class="highlight">Terraform</span>, and
@@ -197,14 +164,14 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- ============================== EXPERIENCE SECTION ============================== -->
     <section class="section section-alt" id="experience">
         <div class="container">
             <h2 class="section-title">
                 <span class="section-number">02.</span> Experience
             </h2>
             <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content glass-card">
                         <div class="timeline-header">
@@ -223,7 +190,8 @@
                         <ul class="timeline-details">
                             <li>
                                 <i class="fas fa-chevron-right"></i>
-                                Sole developer for Kandivali Skill Centre, a <strong>full-stack web + Android app</strong>
+                                Sole developer for Kandivali Skill Centre, a <strong>full-stack web + Android
+                                    app</strong>
                                 (Next.js, React, Capacitor.js, Docker, Kubernetes) platform live with
                                 <span class="metric">20,000+ registrations</span> and
                                 <span class="metric">20,000+ visits</span> as of July 2026.
@@ -257,19 +225,30 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ============================== FEATURED PROJECTS ============================== -->
     <section class="section" id="projects">
         <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">03.</span> Featured Projects
-            </h2>
-            <div class="projects-grid">
+            <div class="projects-heading">
+                <img src="images/enchantedbook.png" alt="Enchanted Book" class="projects-heading-icon">
+                <h2 class="section-title">
+                    <span class="section-number">03.</span> Featured Projects
+                </h2>
+            </div>
+            <p class="projects-subtitle">A selection of projects showcasing cloud infrastructure, automation, and full-stack development.</p>
+
+            <!-- Wellfound Category Filter Bar -->
+            <div class="wf-filter-bar">
+                <button class="wf-pill active">All</button>
+                <button class="wf-pill">Cloud Infrastructure</button>
+                <button class="wf-pill">DevOps & Automation</button>
+                <button class="wf-pill">Kubernetes</button>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
                 <!-- Project 1 -->
-                <div class="project-card glass-card" data-aos="fade-up">
+                <div class="project-card glass-card" data-index="0">
                     <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
+                        <div class="project-icon"><i class="fas fa-brain"></i></div>
                         <div class="project-links">
                             <a href="https://github.com/m0hitd/AI-Enterprise-Architect" class="project-link"
                                 title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
@@ -279,33 +258,18 @@
                     <p class="project-date"><i class="fas fa-calendar-alt"></i> May 2026 – June 2026</p>
                     <p class="project-description">
                         Reduced cloud infrastructure design time from <strong>hours to seconds</strong> for small
-                        service creation (e.g., a URL shortener with 10,000 users), ensuring syntax-correct HCL
-                        configurations and predictable monthly cost estimates by automating Terraform IaC generation
-                        with JSON schema enforcement.
+                        service creation, ensuring syntax-correct HCL configurations and predictable monthly cost
+                        estimates by automating Terraform IaC generation with JSON schema enforcement.
                     </p>
-                    <ul class="project-highlights">
-                        <li><i class="fas fa-check-circle"></i> Interactive visualizer built with Excalidraw
-                            & Mermaid.js for editing AI-generated infrastructure layouts</li>
-                        <li><i class="fas fa-check-circle"></i> Multi-cloud architecture ranking by cost estimation
-                            across AWS, GCP, and Azure</li>
-                        <li><i class="fas fa-check-circle"></i> Single code layer handling prompt engineering for
-                            multiple cloud providers</li>
-                    </ul>
                     <div class="project-tech">
-                        <span>React 18</span>
-                        <span>Gemini 2.5</span>
-                        <span>Terraform</span>
-                        <span>GCP</span>
-                        <span>Node.js</span>
+                        <span>React 18</span><span>Gemini 2.5</span><span>Terraform</span><span>GCP</span><span>Node.js</span>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-card glass-card" data-index="1">
                     <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-server"></i>
-                        </div>
+                        <div class="project-icon"><i class="fas fa-server"></i></div>
                         <div class="project-links">
                             <a href="https://github.com/m0hitd/infra-automation-platform" class="project-link"
                                 title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
@@ -313,35 +277,20 @@
                     </div>
                     <h3 class="project-title">Infrastructure Automation Platform</h3>
                     <p class="project-description">
-                        Replaced manual cloud setup steps with a single web UI, automating the entire cloud lifecycle
-                        from creation to cleanup by building a React and Node.js portal that triggers Terraform
-                        scripts on GCP. Modular Terraform blueprints guarantee identical development and production
-                        environments, making all deployments completely repeatable at any scale.
+                        Replaced manual cloud setup with a single web UI, automating the entire cloud lifecycle from
+                        creation to cleanup by building a React and Node.js portal that triggers Terraform scripts on
+                        GCP.
                     </p>
-                    <ul class="project-highlights">
-                        <li><i class="fas fa-check-circle"></i> 100% automated code testing & deployment via GitHub
-                            Actions</li>
-                        <li><i class="fas fa-check-circle"></i> Secure, VPC-isolated environment with tight IAM
-                            controls</li>
-                        <li><i class="fas fa-check-circle"></i> Reproducible deployments at any scale with modular
-                            Terraform blueprints</li>
-                    </ul>
                     <div class="project-tech">
-                        <span>Docker</span>
-                        <span>Terraform</span>
-                        <span>React</span>
-                        <span>Node.js</span>
-                        <span>GCP</span>
-                        <span>GitHub Actions</span>
+                        <span>Docker</span><span>Terraform</span><span>React</span><span>Node.js</span><span>GCP</span><span>GitHub
+                            Actions</span>
                     </div>
                 </div>
 
-                <!-- Project 3 -->
-                <div class="project-card glass-card" data-aos="fade-up" data-aos-delay="200">
+                <!-- Project 3 (hidden by default) -->
+                <div class="project-card glass-card project-hidden" data-index="2">
                     <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-dharmachakra"></i>
-                        </div>
+                        <div class="project-icon"><i class="fas fa-dharmachakra"></i></div>
                         <div class="project-links">
                             <a href="https://github.com/m0hitd/kubernetes-python-helm-deployment" class="project-link"
                                 title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
@@ -349,39 +298,30 @@
                     </div>
                     <h3 class="project-title">Kubernetes Helm Deployment</h3>
                     <p class="project-description">
-                        Moved a Flask API onto GKE using Docker and Helm charts, making the application modular,
-                        easy to scale, and completely repeatable across environments. Built modular Helm charts to
-                        orchestrate Kubernetes clusters, keeping resource setups consistent and preventing manual
-                        configuration mistakes.
+                        Moved a Flask API onto GKE using Docker and Helm charts, making the application modular, easy
+                        to scale, and completely repeatable across environments.
                     </p>
-                    <ul class="project-highlights">
-                        <li><i class="fas fa-check-circle"></i> Kubernetes HPA for auto-scaling under heavy user
-                            traffic</li>
-                        <li><i class="fas fa-check-circle"></i> Modular Helm Charts preventing manual configuration
-                            mistakes</li>
-                        <li><i class="fas fa-check-circle"></i> Cost-efficient scaling without overspending on idle
-                            cloud resources</li>
-                    </ul>
                     <div class="project-tech">
-                        <span>DevOps</span>
-                        <span>Kubernetes</span>
-                        <span>Helm</span>
-                        <span>GCP</span>
-                        <span>Python</span>
+                        <span>DevOps</span><span>Kubernetes</span><span>Helm</span><span>GCP</span><span>Python</span>
                     </div>
                 </div>
             </div>
+
+            <button class="view-more-btn" id="viewMoreBtn">
+                <span class="view-more-text">View More</span>
+                <i class="fas fa-chevron-down view-more-icon"></i>
+            </button>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ============================== SKILLS SECTION ============================== -->
     <section class="section section-alt" id="skills">
         <div class="container">
             <h2 class="section-title">
                 <span class="section-number">04.</span> Technical Skills
             </h2>
             <div class="skills-grid">
-                <div class="skill-category glass-card" data-aos="fade-up">
+                <div class="skill-category glass-card">
                     <div class="skill-category-header">
                         <div class="skill-icon cloud"><i class="fas fa-cloud"></i></div>
                         <h3>Cloud & Infrastructure</h3>
@@ -400,7 +340,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="skill-category glass-card">
                     <div class="skill-category-header">
                         <div class="skill-icon cicd"><i class="fas fa-infinity"></i></div>
                         <h3>CI/CD & Automation</h3>
@@ -413,9 +353,7 @@
                     </div>
                 </div>
 
-
-
-                <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="skill-category glass-card">
                     <div class="skill-category-header">
                         <div class="skill-icon monitoring"><i class="fas fa-chart-line"></i></div>
                         <h3>Monitoring & Reliability</h3>
@@ -428,7 +366,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="skill-category glass-card">
                     <div class="skill-category-header">
                         <div class="skill-icon dev"><i class="fas fa-code"></i></div>
                         <h3>Development</h3>
@@ -440,7 +378,7 @@
                     </div>
                 </div>
 
-                <div class="skill-category glass-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="skill-category glass-card">
                     <div class="skill-category-header">
                         <div class="skill-icon dev"><i class="fas fa-tools"></i></div>
                         <h3>Version Control & Tools</h3>
@@ -455,7 +393,7 @@
         </div>
     </section>
 
-    <!-- Certifications Section -->
+    <!-- ============================== CERTIFICATIONS SECTION ============================== -->
     <section class="section" id="certifications">
         <div class="container">
             <h2 class="section-title">
@@ -463,10 +401,8 @@
             </h2>
             <div class="certs-grid">
                 <a href="https://www.credly.com/badges/2a6038a7-0504-4011-bb92-be13b2d5f1b1/public_url" target="_blank"
-                    class="cert-card glass-card" data-aos="fade-up">
-                    <div class="cert-badge gcp">
-                        <i class="fab fa-google"></i>
-                    </div>
+                    class="cert-card glass-card">
+                    <div class="cert-badge gcp"><i class="fab fa-google"></i></div>
                     <div class="cert-info">
                         <h3>Associate Cloud Engineer (ACE)</h3>
                         <p class="cert-issuer">Google Cloud</p>
@@ -477,11 +413,8 @@
                     </div>
                 </a>
 
-                <a href="https://verify.skilljar.com/c/2p2nhymifrvf" target="_blank" class="cert-card glass-card"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <div class="cert-badge anthropic">
-                        <i class="fas fa-robot"></i>
-                    </div>
+                <a href="https://verify.skilljar.com/c/2p2nhymifrvf" target="_blank" class="cert-card glass-card">
+                    <div class="cert-badge anthropic"><i class="fas fa-robot"></i></div>
                     <div class="cert-info">
                         <h3>Claude Code in Action 101</h3>
                         <p class="cert-issuer">Anthropic</p>
@@ -493,10 +426,8 @@
                 </a>
 
                 <a href="https://www.skills.google/public_profiles/44c2e2ed-0316-4198-8e81-f9ab3ee3a4fe/badges/19237580"
-                    target="_blank" class="cert-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="cert-badge google">
-                        <i class="fab fa-google"></i>
-                    </div>
+                    target="_blank" class="cert-card glass-card">
+                    <div class="cert-badge google"><i class="fab fa-google"></i></div>
                     <div class="cert-info">
                         <h3>Introduction to Generative AI</h3>
                         <p class="cert-issuer">Google</p>
@@ -509,9 +440,7 @@
 
                 <a href="https://www.skills.google/public_profiles/44c2e2ed-0316-4198-8e81-f9ab3ee3a4fe/badges/9228910"
                     target="_blank" class="cert-card glass-card">
-                    <div class="cert-badge google">
-                        <i class="fab fa-google"></i>
-                    </div>
+                    <div class="cert-badge google"><i class="fab fa-google"></i></div>
                     <div class="cert-info">
                         <h3>Google Cloud Fundamentals: Core Infrastructure</h3>
                         <p class="cert-issuer">Google Cloud Skills Boost</p>
@@ -524,9 +453,7 @@
 
                 <a href="https://www.linkedin.com/in/m0hitdebnath/details/certifications/" target="_blank"
                     class="cert-card glass-card">
-                    <div class="cert-badge coursera">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="cert-badge coursera"><i class="fas fa-graduation-cap"></i></div>
                     <div class="cert-info">
                         <h3>Observability in Google Cloud</h3>
                         <p class="cert-issuer">Coursera · Google Cloud</p>
@@ -539,9 +466,7 @@
 
                 <a href="https://www.linkedin.com/in/m0hitdebnath/details/certifications/" target="_blank"
                     class="cert-card glass-card">
-                    <div class="cert-badge coursera">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="cert-badge coursera"><i class="fas fa-graduation-cap"></i></div>
                     <div class="cert-info">
                         <h3>Logging and Monitoring in Google Cloud</h3>
                         <p class="cert-issuer">Coursera · Google Cloud</p>
@@ -554,9 +479,7 @@
 
                 <a href="https://www.linkedin.com/in/m0hitdebnath/details/certifications/" target="_blank"
                     class="cert-card glass-card">
-                    <div class="cert-badge coursera">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="cert-badge coursera"><i class="fas fa-graduation-cap"></i></div>
                     <div class="cert-info">
                         <h3>Mitigating Security Vulnerabilities on Google Cloud</h3>
                         <p class="cert-issuer">Coursera · Google Cloud</p>
@@ -569,9 +492,7 @@
 
                 <a href="https://www.linkedin.com/in/m0hitdebnath/details/certifications/" target="_blank"
                     class="cert-card glass-card">
-                    <div class="cert-badge coursera">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="cert-badge coursera"><i class="fas fa-graduation-cap"></i></div>
                     <div class="cert-info">
                         <h3>Security Best Practices in Google Cloud</h3>
                         <p class="cert-issuer">Coursera · Google Cloud</p>
@@ -584,9 +505,7 @@
 
                 <a href="https://www.linkedin.com/in/m0hitdebnath/details/certifications/" target="_blank"
                     class="cert-card glass-card">
-                    <div class="cert-badge coursera">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="cert-badge coursera"><i class="fas fa-graduation-cap"></i></div>
                     <div class="cert-info">
                         <h3>Managing Security in Google Cloud</h3>
                         <p class="cert-issuer">Coursera · Google Cloud</p>
@@ -599,9 +518,7 @@
 
                 <a href="https://www.linkedin.com/in/m0hitdebnath/details/certifications/" target="_blank"
                     class="cert-card glass-card">
-                    <div class="cert-badge coursera">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="cert-badge coursera"><i class="fas fa-graduation-cap"></i></div>
                     <div class="cert-info">
                         <h3>Networking in Google Cloud: Hybrid and Multicloud</h3>
                         <p class="cert-issuer">Coursera · Google Cloud</p>
@@ -614,9 +531,7 @@
 
                 <a href="https://www.linkedin.com/in/m0hitdebnath/details/certifications/" target="_blank"
                     class="cert-card glass-card">
-                    <div class="cert-badge coursera">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="cert-badge coursera"><i class="fas fa-graduation-cap"></i></div>
                     <div class="cert-info">
                         <h3>Networking in Google Cloud: Load Balancing</h3>
                         <p class="cert-issuer">Coursera · Google Cloud</p>
@@ -629,9 +544,7 @@
 
                 <a href="https://www.linkedin.com/in/m0hitdebnath/details/certifications/" target="_blank"
                     class="cert-card glass-card">
-                    <div class="cert-badge coursera">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="cert-badge coursera"><i class="fas fa-graduation-cap"></i></div>
                     <div class="cert-info">
                         <h3>Networking in Google Cloud: Network Security</h3>
                         <p class="cert-issuer">Coursera · Google Cloud</p>
@@ -645,186 +558,62 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section section-alt" id="contact">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">06.</span> Get In Touch
-            </h2>
-            <div class="contact-content">
-                <p class="contact-description">
-                    I'm currently looking for <strong>Cloud Engineering</strong> and <strong>DevOps</strong>
-                    opportunities.
-                    Whether you have a question, a project idea, or just want to connect — my inbox is always open!
-                </p>
-                <div class="contact-grid">
-                    <a href="mailto:mohitdebnath537@gmail.com" class="contact-card glass-card">
-                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                        <h4>Email</h4>
-                        <p>mohitdebnath537@gmail.com</p>
-                    </a>
-                    <a href="tel:+918177920581" class="contact-card glass-card">
-                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                        <h4>Phone</h4>
-                        <p>+91-8177920581</p>
-                    </a>
-                    <a href="https://www.linkedin.com/in/m0hitdebnath/" class="contact-card glass-card" target="_blank">
-                        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                        <h4>LinkedIn</h4>
-                        <p>Connect with me</p>
-                    </a>
-                    <a href="https://github.com/m0hitd" class="contact-card glass-card" target="_blank">
-                        <div class="contact-icon"><i class="fab fa-github"></i></div>
-                        <h4>GitHub</h4>
-                        <p>View my code</p>
-                    </a>
-                </div>
-                <div class="contact-grid contact-grid-secondary">
-                    <a href="https://wellfound.com/u/mohit-debnath" class="contact-card glass-card" target="_blank">
-                        <div class="contact-icon"><i class="fab fa-angellist"></i></div>
-                        <h4>Wellfound</h4>
-                        <p>View profile</p>
-                    </a>
+    <!-- ============================== MARQUEE (RIGHT / REVERSED) ============================== -->
+    <section class="marquee-section is--reversed-marquee" id="marqueeRight">
+        <div class="marquee-track">
+            <div class="marquee--textwrapper-hold reverse">
+                <span class="marquee-text">Cloud Architecture &bull; Infrastructure as Code &bull; Container Security &bull; Service Mesh &bull; GitOps &bull; Secrets Management &bull; Disaster Recovery &bull; High Availability &bull; Auto-Scaling &bull; Cost Optimization &bull;&nbsp;</span>
+                <span class="marquee-text">Cloud Architecture &bull; Infrastructure as Code &bull; Container Security &bull; Service Mesh &bull; GitOps &bull; Secrets Management &bull; Disaster Recovery &bull; High Availability &bull; Auto-Scaling &bull; Cost Optimization &bull;&nbsp;</span>
+            </div>
+        </div>
+        <div class="marquee-track">
+            <div class="marquee--textwrapper-hold">
+                <span class="marquee-text">Google Cloud &bull; Compute Engine &bull; Cloud Run &bull; Cloud Storage &bull; BigQuery &bull; Pub/Sub &bull; Cloud SQL &bull; Artifact Registry &bull; Cloud Build &bull; Cloud Monitoring &bull;&nbsp;</span>
+                <span class="marquee-text">Google Cloud &bull; Compute Engine &bull; Cloud Run &bull; Cloud Storage &bull; BigQuery &bull; Pub/Sub &bull; Cloud SQL &bull; Artifact Registry &bull; Cloud Build &bull; Cloud Monitoring &bull;&nbsp;</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== CTA SECTION ============================== -->
+    <section class="cta-section" id="cta">
+        <!-- Parallax background -->
+        <div class="cta-bg" id="ctaBg">
+            <img src="images/night-sky.png" alt="Night sky landscape">
+        </div>
+        <!-- Top gradient overlay -->
+        <div class="cta-gradient-overlay"></div>
+
+        <div class="cta-card-container">
+            <!-- Llama mascot -->
+            <div class="cta-mascot">
+                <img src="images/llama-nobg.png" alt="Llama mascot">
+            </div>
+
+            <!-- MagicCard -->
+            <div class="magic-card" id="magicCard">
+                <div class="magic-card-glow" id="magicCardGlow"></div>
+                <div class="magic-card-content">
+                    <span class="cta-eyebrow">GET IN TOUCH</span>
+                    <h2 class="cta-headline">Let's Build Something Together</h2>
+                    <p class="cta-description">
+                        I'm currently looking for <strong>Cloud Engineering</strong> and <strong>DevOps</strong>
+                        opportunities. Whether you have a question or just want to connect — my inbox is always open.
+                    </p>
+                    <div class="cta-links">
+                        <a href="mailto:mohitdebnath537@gmail.com">mohitdebnath537@gmail.com</a>
+                        <span class="cta-link-dot">&bull;</span>
+                        <a href="https://www.linkedin.com/in/m0hitdebnath/" target="_blank">LinkedIn</a>
+                        <span class="cta-link-dot">&bull;</span>
+                        <a href="https://github.com/m0hitd" target="_blank">GitHub</a>
+                        <span class="cta-link-dot">&bull;</span>
+                        <a href="https://wellfound.com/u/mohit-debnath" target="_blank">Wellfound</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="section" id="gallery">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">07.</span> Gallery
-            </h2>
-            <p class="gallery-subtitle">Snapshots from my internship, achievements, and journey in tech.</p>
-
-            <!-- Category Filters -->
-            <div class="gallery-filters">
-                <button class="gallery-filter active" data-filter="all">All</button>
-                <button class="gallery-filter" data-filter="internship">Internship</button>
-                <button class="gallery-filter" data-filter="achievement">Achievements</button>
-            </div>
-
-            <!-- Carousel Wrapper -->
-            <div class="gallery-carousel-wrapper">
-                <button class="gallery-arrow gallery-arrow-left" id="galleryPrev" aria-label="Previous">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <div class="gallery-carousel" id="galleryCarousel">
-                    <div class="gallery-slide" data-category="internship">
-                        <div class="gallery-img-wrapper">
-                            <img src="images/internship-work.png" alt="Working at Xpress Gaming" loading="lazy">
-                            <div class="gallery-overlay">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-caption">
-                            <span class="gallery-badge internship">Internship</span>
-                            <h4>Working at Xpress Gaming</h4>
-                            <p>Building production-ready web applications and automation tools at Pune office.</p>
-                        </div>
-                    </div>
-
-                    <div class="gallery-slide" data-category="achievement">
-                        <div class="gallery-img-wrapper">
-                            <img src="images/gcp-certification.png" alt="GCP ACE Certification" loading="lazy">
-                            <div class="gallery-overlay">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-caption">
-                            <span class="gallery-badge achievement">Achievement</span>
-                            <h4>GCP Associate Cloud Engineer</h4>
-                            <p>Earned the Google Cloud Associate Cloud Engineer certification in 2026.</p>
-                        </div>
-                    </div>
-
-                    <div class="gallery-slide" data-category="internship">
-                        <div class="gallery-img-wrapper">
-                            <img src="images/team-collaboration.png" alt="Team Collaboration" loading="lazy">
-                            <div class="gallery-overlay">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-caption">
-                            <span class="gallery-badge internship">Internship</span>
-                            <h4>Cross-team Collaboration</h4>
-                            <p>Coordinating asset pipelines across developers, artists, and project managers.</p>
-                        </div>
-                    </div>
-
-                    <div class="gallery-slide" data-category="achievement">
-                        <div class="gallery-img-wrapper">
-                            <img src="images/tech-presentation.png" alt="Tech Presentation" loading="lazy">
-                            <div class="gallery-overlay">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-caption">
-                            <span class="gallery-badge achievement">Achievement</span>
-                            <h4>Tech Presentation</h4>
-                            <p>Presenting cloud architecture solutions at a tech event.</p>
-                        </div>
-                    </div>
-
-                    <div class="gallery-slide" data-category="internship">
-                        <div class="gallery-img-wrapper">
-                            <img src="images/devops-workspace.png" alt="DevOps Workspace" loading="lazy">
-                            <div class="gallery-overlay">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-caption">
-                            <span class="gallery-badge internship">Internship</span>
-                            <h4>DevOps in Action</h4>
-                            <p>Deploying infrastructure with Terraform and monitoring with Grafana dashboards.</p>
-                        </div>
-                    </div>
-
-                    <div class="gallery-slide" data-category="achievement">
-                        <div class="gallery-img-wrapper">
-                            <img src="images/achievement-award.png" alt="Award Ceremony" loading="lazy">
-                            <div class="gallery-overlay">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
-                        <div class="gallery-caption">
-                            <span class="gallery-badge achievement">Achievement</span>
-                            <h4>Recognition & Awards</h4>
-                            <p>Receiving recognition for academic and technical accomplishments.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="gallery-arrow gallery-arrow-right" id="galleryNext" aria-label="Next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-
-            <!-- Dot Indicators -->
-            <div class="gallery-dots" id="galleryDots"></div>
-        </div>
-    </section>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">
-            <i class="fas fa-times"></i>
-        </button>
-        <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" aria-label="Previous image">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <div class="lightbox-content">
-            <img id="lightboxImg" src="" alt="">
-            <div class="lightbox-caption" id="lightboxCaption"></div>
-        </div>
-        <button class="lightbox-arrow lightbox-next" id="lightboxNext" aria-label="Next image">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
-
-    <!-- Footer -->
+    <!-- ============================== FOOTER ============================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">

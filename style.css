@@ -956,6 +956,24 @@ img {
     border: 1px solid #e2e8f0;
 }
 
+.project-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: rgba(148, 163, 184, 0.1);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 8px;
+    font-style: italic;
+}
+
+.project-note i {
+    margin-top: 2px;
+}
+
 /* View More Button (Wellfound Solid Black Pill) */
 .view-more-btn {
     display: flex;
@@ -1317,7 +1335,7 @@ img {
     left: 0;
     right: 0;
     height: 200px;
-    background: linear-gradient(to bottom, #000 0%, transparent 100%);
+    background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
     z-index: 1;
     pointer-events: none;
 }

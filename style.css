@@ -401,7 +401,7 @@ img {
     z-index: 2;
     -webkit-mask-image: radial-gradient(circle 160px at var(--x, 50%) var(--y, 50%),
             black 0%, black 60%, transparent 100%);
-    mask-image: radial-gradient(circle 160px at var(--x, 50%) var(--y, 50%),
+    mask-image: radial-gradient(circle 230px at var(--x, 50%) var(--y, 50%),
             black 0%, black 60%, transparent 100%);
     transition: mask-position 0.05s linear;
 }

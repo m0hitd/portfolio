@@ -262,6 +262,19 @@
                         <span>React 18</span><span>Gemini
                             2.5</span><span>Terraform</span><span>GCP</span><span>Node.js</span>
                     </div>
+                    <div class="project-view-architecture-wrap">
+                        <button class="project-view-architecture" data-diagram="images/system-architecture.png"
+                            data-diagram-title="Infrastructure Service Creation Platform — Architecture">
+                            <i class="fas fa-sitemap"></i> View Architecture
+                        </button>
+                        <svg class="architecture-pointer" viewBox="0 0 46 34" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M40 4C30 3 14 8 6 20" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <path d="M4 11L6 20L14 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                 </div>
 
                 <!-- Project 2 -->
@@ -325,6 +338,36 @@
                         <i class="fas fa-lock"></i> This was an internship project — the source code is proprietary
                         and cannot be shared publicly.
                     </p>
+                </div>
+
+                <!-- Project 5 (hidden by default) -->
+                <div class="project-card glass-card project-hidden" data-index="4">
+                    <div class="project-header">
+                        <div class="project-icon"><i class="fas fa-code-branch"></i></div>
+                    </div>
+                    <h3 class="project-title">AWS API Gateway Blue/Green Deployment</h3>
+                    <p class="project-description">
+                        A production-grade, zero-downtime deployment pipeline using blue/green strategy on AWS —
+                        leveraging API Gateway dual stages, Lambda alias weighting, and fully automated rollout via
+                        GitHub Actions and Terraform.
+                    </p>
+                    <div class="project-tech">
+                        <span>AWS</span><span>API Gateway</span><span>Lambda</span><span>Terraform</span><span>GitHub
+                            Actions</span>
+                    </div>
+                    <div class="project-view-architecture-wrap">
+                        <button class="project-view-architecture" data-diagram="images/aws-bluegreen-architecture.png"
+                            data-diagram-title="AWS API Gateway Blue/Green Deployment">
+                            <i class="fas fa-sitemap"></i> View Architecture
+                        </button>
+                        <svg class="architecture-pointer" viewBox="0 0 46 34" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M40 4C30 3 14 8 6 20" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <path d="M4 11L6 20L14 17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
                 </div>
             </div>
 
@@ -872,6 +915,20 @@
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Architecture Diagram Modal -->
+    <div class="diagram-modal" id="diagramModal">
+        <div class="diagram-modal-overlay"></div>
+        <div class="diagram-modal-content">
+            <button class="diagram-modal-close" id="diagramModalClose" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="diagram-modal-title" id="diagramModalTitle"></h3>
+            <div class="diagram-modal-body">
+                <img src="" alt="Architecture Diagram" id="diagramModalImg">
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

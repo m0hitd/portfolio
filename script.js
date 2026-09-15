@@ -290,6 +290,48 @@ function initMagicCard() {
 }
 
 // ==========================================
+// PROJECTS — Architecture Diagram Modal
+// ==========================================
+function initDiagramModal() {
+    const modal = document.getElementById('diagramModal');
+    const overlay = modal ? modal.querySelector('.diagram-modal-overlay') : null;
+    const closeBtn = document.getElementById('diagramModalClose');
+    const img = document.getElementById('diagramModalImg');
+    const title = document.getElementById('diagramModalTitle');
+    const triggers = document.querySelectorAll('.project-view-architecture');
+
+    if (!modal || triggers.length === 0) return;
+
+    function openModal(src, label) {
+        img.src = src;
+        img.alt = label || 'Architecture Diagram';
+        title.textContent = label || '';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        img.src = '';
+    }
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            openModal(trigger.dataset.diagram, trigger.dataset.diagramTitle);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
+// ==========================================
 // INITIALIZE
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -301,4 +343,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectsToggle();
     initCtaParallax();
     initMagicCard();
+    initDiagramModal();
 });

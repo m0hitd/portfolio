@@ -1219,6 +1219,59 @@ img {
 /* ==========================================
    CERTIFICATIONS SECTION (Wellfound Style)
    ========================================== */
+.certs-subtitle {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.certs-subtitle i {
+    color: var(--accent-blue);
+}
+
+.certs-featured {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.cert-card-featured {
+    gap: 26px;
+    padding: 34px;
+    border-width: 2px;
+    border-radius: 16px;
+}
+
+.cert-card-featured .cert-badge {
+    width: 88px;
+    height: 88px;
+    border-radius: 14px;
+    font-size: 2rem;
+}
+
+.cert-card-featured .cert-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+}
+
+.cert-card-featured .cert-issuer {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.cert-card-featured .cert-meta {
+    font-size: 0.85rem;
+}
+
+.cert-card-featured .cert-meta i {
+    font-size: 0.8rem;
+}
+
 .certs-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1727,12 +1780,17 @@ img {
         grid-template-columns: 1fr;
     }
 
-    .certs-grid {
+    .certs-grid,
+    .certs-featured {
         grid-template-columns: 1fr;
     }
 
     .cert-card {
         padding: 18px;
+    }
+
+    .cert-card-featured {
+        padding: 24px;
     }
 }
 

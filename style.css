@@ -844,7 +844,7 @@ img {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     margin-bottom: 32px;
 }
@@ -1148,7 +1148,8 @@ img {
    ========================================== */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
     gap: 20px;
 }
 
@@ -1157,6 +1158,9 @@ img {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .skill-category-header {
@@ -1206,15 +1210,37 @@ img {
 }
 
 .skill-tag:hover {
-    border-color: #000000;
-    color: #000000;
-    background: #ffffff;
+    filter: brightness(0.97);
+    transform: translateY(-1px);
 }
 
 .skill-tag i {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: inherit;
 }
+
+/* ---- Colorized brand badges (pastel bg + brand-tinted text) ---- */
+.skill-tag.t-gcp        { background: #e8f0fe; border-color: #c3dafe; color: #1a73e8; }
+.skill-tag.t-aws        { background: #fff1e0; border-color: #ffd8a8; color: #d97706; }
+.skill-tag.t-k8s        { background: #e8ecfb; border-color: #c7d2fe; color: #3251d9; }
+.skill-tag.t-docker     { background: #e6f3ff; border-color: #bcdfff; color: #1d63ed; }
+.skill-tag.t-helm       { background: #e6f7f5; border-color: #b9ece6; color: #0f766e; }
+.skill-tag.t-terraform  { background: #efe8fd; border-color: #d6c8fb; color: #7b42bc; }
+.skill-tag.t-linux      { background: #fef6e0; border-color: #fbe6ad; color: #a16207; }
+.skill-tag.t-network    { background: #eef2f7; border-color: #d3dce6; color: #475569; }
+.skill-tag.t-jenkins    { background: #fdeaea; border-color: #f8cccc; color: #c9302c; }
+.skill-tag.t-github     { background: #eceef1; border-color: #d0d7de; color: #24292f; }
+.skill-tag.t-rocket     { background: #fdeef0; border-color: #f9ccd4; color: #db2777; }
+.skill-tag.t-pipeline   { background: #e8f0fe; border-color: #c3dafe; color: #1a56db; }
+.skill-tag.t-prometheus { background: #ffece2; border-color: #ffcfb8; color: #e6522c; }
+.skill-tag.t-grafana    { background: #fdf0e6; border-color: #f9d8bd; color: #f46800; }
+.skill-tag.t-health     { background: #fdeef0; border-color: #f9ccd4; color: #e11d48; }
+.skill-tag.t-optimize   { background: #e6f7ee; border-color: #bdeccf; color: #16a34a; }
+.skill-tag.t-python     { background: #eaf1fb; border-color: #cadcf5; color: #2b6cb0; }
+.skill-tag.t-node       { background: #edf7e8; border-color: #d0ebc2; color: #4d8a2f; }
+.skill-tag.t-api        { background: #eef2f7; border-color: #d3dce6; color: #475569; }
+.skill-tag.t-git        { background: #fdece4; border-color: #f9d3bf; color: #de4c26; }
+.skill-tag.t-shell      { background: #ecefe9; border-color: #d5ddca; color: #3f6212; }
 
 /* ==========================================
    CERTIFICATIONS SECTION (Wellfound Style)
@@ -1241,17 +1267,23 @@ img {
 }
 
 .cert-card-featured {
-    gap: 26px;
-    padding: 34px;
+    gap: 20px;
+    padding: 22px 28px;
     border-width: 2px;
     border-radius: 16px;
 }
 
 .cert-card-featured .cert-badge {
-    width: 88px;
-    height: 88px;
+    width: 72px;
+    height: 72px;
     border-radius: 14px;
     font-size: 2rem;
+}
+
+.cert-card-featured .cert-badge.cert-badge-img {
+    background: transparent;
+    border: none;
+    padding: 0;
 }
 
 .cert-card-featured .cert-info h3 {
@@ -1312,10 +1344,29 @@ img {
     overflow: hidden;
 }
 
+/* ---- Colorized issuer badges (pastel bg + brand-colored icon) ---- */
+.cert-badge.anthropic {
+    background: #f7f0ea;
+    border-color: #eaddd0;
+    color: #d97757;
+}
+
+.cert-badge.google {
+    background: #e8f0fe;
+    border-color: #c3dafe;
+    color: #4285f4;
+}
+
+.cert-badge.coursera {
+    background: #e8eefb;
+    border-color: #c7d6f7;
+    color: #0056d2;
+}
+
 .cert-badge.cert-badge-img {
-    background: transparent;
-    border: none;
-    padding: 0;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 7px;
 }
 
 .cert-badge img {
@@ -1741,6 +1792,19 @@ img {
     animation: fadeSlideUp 0.5s ease forwards;
 }
 
+/* ---- Category filter ---- */
+/* Hide cards that don't match the active filter */
+.project-card.filtered-out {
+    display: none !important;
+}
+
+/* When a specific category is active, reveal matching hidden cards
+   regardless of the View More/Less collapse state */
+.projects-grid.filter-active .project-hidden:not(.filtered-out) {
+    display: block;
+    animation: fadeSlideUp 0.4s ease forwards;
+}
+
 @keyframes fadeSlideUp {
     from {
         opacity: 0;
@@ -1773,11 +1837,11 @@ img {
     }
 
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .skills-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .certs-grid,

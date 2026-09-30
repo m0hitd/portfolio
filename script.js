@@ -234,6 +234,43 @@ function initProjectsToggle() {
 }
 
 // ==========================================
+// FEATURED PROJECTS — Category Filter Bar
+// ==========================================
+function initProjectFilter() {
+    const pills = document.querySelectorAll('.wf-filter-bar .wf-pill');
+    const cards = document.querySelectorAll('#projectsGrid .project-card');
+    const viewMoreBtn = document.getElementById('viewMoreBtn');
+
+    if (pills.length === 0 || cards.length === 0) return;
+
+    function applyFilter(filter) {
+        cards.forEach(card => {
+            const cats = (card.dataset.categories || '').split(/\s+/).filter(Boolean);
+            const match = filter === 'all' || cats.includes(filter);
+            card.classList.toggle('filtered-out', !match);
+        });
+
+        // When a specific category is chosen, all matches must be visible
+        // (bypassing the View More/Less collapse). "All" restores that behavior.
+        const grid = document.getElementById('projectsGrid');
+        if (grid) grid.classList.toggle('filter-active', filter !== 'all');
+
+        // Hide the View More button while filtering; restore for "All".
+        if (viewMoreBtn) {
+            viewMoreBtn.style.display = filter === 'all' ? '' : 'none';
+        }
+    }
+
+    pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            applyFilter(pill.dataset.filter || 'all');
+        });
+    });
+}
+
+// ==========================================
 // CTA — Parallax Background
 // ==========================================
 function initCtaParallax() {
@@ -341,6 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollTop();
     initSmoothScroll();
     initProjectsToggle();
+    initProjectFilter();
     initCtaParallax();
     initMagicCard();
     initDiagramModal();

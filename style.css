@@ -1149,7 +1149,7 @@ img {
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
+    grid-auto-rows: auto;
     gap: 20px;
 }
 
@@ -1160,7 +1160,6 @@ img {
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 .skill-category-header {
@@ -1363,16 +1362,23 @@ img {
     color: #0056d2;
 }
 
+.cert-badge.aws {
+    background: #fff7ed;
+    border-color: #fed7aa;
+    color: #ff9900;
+}
+
 .cert-badge.cert-badge-img {
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    padding: 7px;
+    padding: 4px;
+    overflow: hidden;
 }
 
 .cert-badge img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .cert-info h3 {

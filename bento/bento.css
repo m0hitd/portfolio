@@ -1,0 +1,271 @@
+/* Bento Grid — dark, Mistral-inspired. Scoped under .bx so it can't clash with style.css */
+.bx {
+  --bg: #0d0f10;
+  --card: #0d0f10;
+  --border: #262626;
+  /* neutral-800 */
+  --tile-light: #262628;
+  --tile-dark: #141517;
+  --diamond-base: #1a1b1d;
+  --text: #ffffff;
+  --muted: #a3a3a3;
+  /* neutral-400 */
+  --t: 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: 64px 16px;
+  overflow: hidden;
+  container-type: inline-size;
+  /* Full-bleed: break out of the page .container to span the viewport */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* Stop 100vw (which includes the scrollbar) from causing horizontal scroll */
+section:has(> .container > #badges-bento) {
+  overflow-x: clip;
+}
+
+.bx *,
+.bx *::before,
+.bx *::after {
+  box-sizing: border-box;
+}
+
+/* Stage: 945 x 545 units, 1 unit = --u */
+.bx-stage {
+  --u: min(calc((100cqw - 64px) / 945), 1.6px);
+  --diamond: var(--diamond-base);
+  position: relative;
+  width: calc(945 * var(--u));
+  height: calc(545 * var(--u));
+  margin: 0 auto;
+}
+
+.bx-tile,
+.bx-slot {
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+}
+
+.bx-tile {
+  border: 1px solid var(--border);
+}
+
+.bx-tile--light {
+  background: var(--tile-light);
+}
+
+.bx-tile--dark {
+  background: var(--tile-dark);
+}
+
+/* Background diamond badges (sit behind tiles and cards) */
+.bx-diamond {
+  position: absolute;
+  left: calc((var(--cx) - var(--s) / 2) * var(--u));
+  top: calc((var(--cy) - var(--s) / 2) * var(--u));
+  width: calc(var(--s) * var(--u));
+  height: calc(var(--s) * var(--u));
+  transform: rotate(45deg);
+  background: var(--diamond-base);
+  transition: background-color var(--t);
+}
+
+.bx-diamond.is-lit {
+  background: color-mix(in srgb, var(--diamond) 14%, var(--diamond-base));
+}
+
+/* Card slot: holds the accent block and the sliding panel */
+.bx-slot {
+  z-index: 1;
+}
+
+.bx-slot.is-active {
+  z-index: 2;
+}
+
+/* Solid accent block: grows out of the slot edge as the panel slides away */
+.bx-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--bar) * var(--u));
+  background: var(--accent);
+  opacity: 0;
+  transform: scaleX(0);
+  transition: opacity var(--t), transform var(--t);
+}
+
+.bx-bar--left {
+  left: 0;
+  transform-origin: left;
+}
+
+.bx-bar--right {
+  right: 0;
+  transform-origin: right;
+}
+
+.bx-slot.is-active .bx-bar {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.bx-panel {
+  position: absolute;
+  inset: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: calc(11 * var(--u));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--text);
+  text-decoration: none;
+  outline: none;
+  transition: transform var(--t), background-color var(--t), border-color var(--t);
+}
+
+.bx-slot.is-active .bx-panel {
+  transform: translateX(calc(var(--shift) * var(--u)));
+  background: #111315;
+}
+
+.bx-panel:focus-visible {
+  border-color: var(--accent);
+}
+
+.bx-slot.is-peripheral .bx-panel:focus-visible {
+  border-color: #737373;
+}
+
+/* Content */
+.bx-glyph {
+  display: grid;
+  place-items: center;
+  width: calc(30 * var(--u));
+  height: calc(30 * var(--u));
+  flex: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: calc(14 * var(--u));
+}
+
+.bx-slot.is-peripheral .bx-glyph {
+  background: none;
+  font-size: calc(18 * var(--u));
+  color: #F7B32B;
+}
+
+.bx-glyph img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.bx-glyph--lg {
+  width: calc(90 * var(--u));
+  height: calc(90 * var(--u));
+}
+
+.bx-copy {
+  display: block;
+}
+
+.bx-title {
+  display: block;
+  font-size: calc(18 * var(--u));
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.bx-slot.is-peripheral .bx-title {
+  font-size: calc(16 * var(--u));
+}
+
+.bx-subtitle {
+  display: block;
+  margin-top: calc(6 * var(--u));
+  font-size: calc(12 * var(--u));
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Narrow screens: stack the cards instead of shrinking the stage */
+@container (max-width: 700px) {
+  .bx-stage {
+    --u: 1px;
+    width: 100%;
+    height: auto;
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .bx-tile,
+  .bx-diamond {
+    display: none;
+  }
+
+  .bx-slot {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    height: auto;
+    min-height: 150px;
+    overflow: hidden;
+  }
+
+  .bx-bar {
+    width: 16px;
+    left: 0;
+    right: auto;
+    transform-origin: left;
+  }
+
+  .bx-slot.is-active .bx-panel {
+    transform: translateX(16px);
+  }
+
+  .bx-panel {
+    position: relative;
+    border: 0;
+    min-height: 150px;
+    padding: 16px;
+    gap: 24px;
+  }
+
+  .bx-glyph {
+    width: 32px;
+    height: 32px;
+  }
+
+  .bx-title,
+  .bx-slot.is-peripheral .bx-title {
+    font-size: 18px;
+  }
+
+  .bx-subtitle {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .bx-bar,
+  .bx-panel,
+  .bx-diamond {
+    transition: none;
+  }
+}

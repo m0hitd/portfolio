@@ -1,15 +1,78 @@
 /* ==========================================
-   DESIGN TOKENS — Wellfound Design System & Warm Hero
+   DESIGN TOKENS
+   Dark (neutral charcoal) is the BASELINE / default theme.
+   Light is an explicit opt-in via :root[data-theme="light"].
    ========================================== */
 :root {
+    /* ---- Backgrounds ---- */
+    --bg-primary: #0d0f10;
+    /* neutral charcoal base (matches bento) */
+    --bg-secondary: #141517;
+    /* card / raised surface */
+    --bg-tertiary: #1a1b1d;
+    /* pill container */
+    --bg-hero: #15171a;
+    /* deep neutral hero (replaces warm studio gray) */
+
+    --text-hero-primary: #f5f5f5;
+    --text-hero-muted: #c9c4c0;
+
+    --bg-card: #141517;
+    --bg-card-hover: #1a1b1d;
+
+    /* ---- Text ---- */
+    --text-primary: #f5f5f5;
+    --text-secondary: #d4d4d4;
+    --text-muted: #a3a3a3;
+    /* neutral-400, matches bento */
+    --text-light: #737373;
+
+    /* ---- Accents ---- */
+    --accent-primary: #f5f5f5;
+    /* "solid" accent inverts to light-on-dark */
+    --accent-blue: #5ab0f0;
+    /* brighter blue for dark bg */
+    --accent-secondary: #818cf8;
+    --accent-coral: #fb7185;
+    --accent-cyan-circle: #5dbcd2;
+    --accent-cyan-glow: rgba(93, 188, 210, 0.18);
+
+    /* ---- Borders ---- */
+    --border-color: #262626;
+    /* neutral-800, matches bento */
+    --border-hover: #404040;
+
+    /* ---- Shadows (deeper on dark) ---- */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+    /* ---- Dark-native helpers ---- */
+    --glass-bg: rgba(20, 21, 23, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --surface-raised: #1c1d20;
+    --accent-glow: rgba(93, 188, 210, 0.12);
+    --toggle-bg: #1a1b1d;
+    --toggle-icon: #f5f5f5;
+
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    --section-padding: 0px 0;
+    --container-width: 1100px;
+
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.25s ease;
+}
+
+/* ==========================================
+   LIGHT THEME OVERRIDE (original Wellfound palette)
+   ========================================== */
+:root[data-theme="light"] {
     --bg-primary: #fafafa;
-    /* Wellfound clean off-white background */
     --bg-secondary: #ffffff;
-    /* Wellfound card white */
     --bg-tertiary: #f1f5f9;
-    /* Wellfound light gray pill container */
     --bg-hero: #baa89c;
-    /* Warm studio gray matching reference picture */
 
     --text-hero-primary: #f5f5f5;
     --text-hero-muted: #e0dbd7;
@@ -18,37 +81,30 @@
     --bg-card-hover: #ffffff;
 
     --text-primary: #050c26;
-    /* Wellfound signature dark navy heading */
     --text-secondary: #334155;
     --text-muted: #64748b;
     --text-light: #94a3b8;
 
     --accent-primary: #000000;
-    /* Wellfound solid black active accent */
     --accent-blue: #143fcd;
-    /* Wellfound deep blue link accent */
     --accent-secondary: #4f46e5;
     --accent-coral: #f43f5e;
     --accent-cyan-circle: #5dbcd2;
-    /* Cyan circle from reference picture */
     --accent-cyan-glow: rgba(93, 188, 210, 0.15);
 
     --border-color: #e2e8f0;
-    /* Crisp light gray border */
     --border-hover: #000000;
 
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.06);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
 
-    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-
-    --section-padding: 80px 0;
-    --container-width: 1100px;
-
-    --transition-fast: 0.15s ease;
-    --transition-normal: 0.25s ease;
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --glass-border: #e2e8f0;
+    --surface-raised: #ffffff;
+    --accent-glow: rgba(93, 188, 210, 0.15);
+    --toggle-bg: #ffffff;
+    --toggle-icon: #1c1c1c;
 }
 
 /* ==========================================
@@ -65,6 +121,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    background-color: var(--bg-primary);
 }
 
 body {
@@ -103,6 +160,7 @@ img {
 .section {
     padding: var(--section-padding);
     position: relative;
+    isolation: isolate;
     background: var(--bg-primary);
 }
 
@@ -178,7 +236,7 @@ img {
 }
 
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--glass-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color);
@@ -228,10 +286,10 @@ img {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: #ffffff;
-    border: none;
+    background: var(--toggle-bg);
+    border: 1px solid var(--border-color);
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     transition: all 0.25s ease;
     z-index: 1001;
 }
@@ -240,18 +298,18 @@ img {
     display: block;
     width: 18px;
     height: 2px;
-    background: #1c1c1c;
+    background: var(--toggle-icon);
     border-radius: 2px;
     transition: all 0.25s ease;
 }
 
 .navbar.scrolled .nav-toggle {
-    background: #000000;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    background: var(--toggle-bg);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .navbar.scrolled .nav-toggle span {
-    background: #ffffff;
+    background: var(--toggle-icon);
 }
 
 /* Active Hamburger State (Transforms into X) */
@@ -269,10 +327,10 @@ img {
     top: 60px;
     right: 24px;
     width: 220px;
-    background: rgba(255, 255, 255, 0.98);
+    background: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--glass-border);
     border-radius: 16px;
     padding: 10px;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
@@ -297,7 +355,7 @@ img {
     display: block;
     font-size: 0.9rem;
     font-weight: 600;
-    color: #050c26;
+    color: var(--text-primary);
     padding: 10px 16px;
     border-radius: 10px;
     transition: all var(--transition-fast);
@@ -306,8 +364,8 @@ img {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #143fcd;
-    background: #f1f5f9;
+    color: var(--accent-blue);
+    background: var(--bg-tertiary);
 }
 
 /* ==========================================
@@ -526,14 +584,14 @@ img {
     white-space: nowrap;
 }
 
-/* Hero bottom fade into Wellfound light theme */
+/* Hero bottom fade into page background */
 .hero-bottom-fade {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 140px;
-    background: linear-gradient(to bottom, transparent 0%, rgba(250, 250, 250, 0.7) 60%, var(--bg-primary) 100%);
+    background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--bg-primary) 70%, transparent) 60%, var(--bg-primary) 100%);
     z-index: 4;
     pointer-events: none;
 }
@@ -815,12 +873,12 @@ img {
     gap: 6px;
     margin-bottom: 40px;
     padding: 5px;
-    background: #f1f5f9;
+    background: var(--bg-tertiary);
     border-radius: 50px;
     width: max-content;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
 }
 
 .wf-pill {
@@ -828,7 +886,7 @@ img {
     border-radius: 50px;
     border: none;
     background: transparent;
-    color: #475569;
+    color: var(--text-secondary);
     font-size: 0.88rem;
     font-weight: 600;
     cursor: pointer;
@@ -837,9 +895,9 @@ img {
 
 .wf-pill.active,
 .wf-pill:hover {
-    background: #000000;
-    color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .projects-grid {
@@ -853,16 +911,16 @@ img {
     position: relative;
     padding: 28px;
     border-radius: 12px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     transition: border-color var(--transition-normal), box-shadow var(--transition-normal), transform var(--transition-normal);
 }
 
 .project-card:hover {
-    border-color: #000000;
-    box-shadow: var(--shadow-lg);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg), 0 0 24px var(--accent-glow);
     transform: translateY(-2px);
 }
 
@@ -877,8 +935,8 @@ img {
     width: 48px;
     height: 48px;
     border-radius: 10px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -895,20 +953,20 @@ img {
     width: 36px;
     height: 36px;
     border-radius: 50px;
-    border: 1px solid #e2e8f0;
-    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    background: var(--bg-tertiary);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #475569;
+    color: var(--text-secondary);
     font-size: 1rem;
     transition: all var(--transition-fast);
 }
 
 .project-link:hover {
-    color: #000000;
-    border-color: #000000;
-    background: #ffffff;
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover);
 }
 
 .project-title {
@@ -953,9 +1011,9 @@ img {
     font-weight: 500;
     padding: 5px 12px;
     border-radius: 50px;
-    background: #f1f5f9;
-    color: #0f172a;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
 }
 
 .project-note {
@@ -989,9 +1047,9 @@ img {
     padding: 9px 16px;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #e11d2e;
-    background: #fff5f5;
-    border: 1.5px solid #e11d2e;
+    color: #ff6b78;
+    background: rgba(225, 29, 46, 0.12);
+    border: 1.5px solid rgba(225, 29, 46, 0.6);
     border-radius: 50px;
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -1118,13 +1176,13 @@ img {
     padding: 12px 32px;
     border-radius: 50px;
     border: none;
-    background: #000000;
-    color: #ffffff;
+    background: var(--accent-primary);
+    color: var(--bg-primary);
     font-family: var(--font-primary);
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
     transition: all var(--transition-normal);
 }
 
@@ -1155,8 +1213,8 @@ img {
 
 .skill-category {
     padding: 24px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -1183,8 +1241,8 @@ img {
     align-items: center;
     justify-content: center;
     font-size: 1rem;
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
     color: var(--accent-blue);
 }
 
@@ -1202,14 +1260,14 @@ img {
     font-weight: 500;
     padding: 6px 14px;
     border-radius: 50px;
-    background: #f1f5f9;
-    border: 1px solid #cbd5e1;
-    color: #0f172a;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
     transition: all var(--transition-fast);
 }
 
 .skill-tag:hover {
-    filter: brightness(0.97);
+    filter: brightness(1.15);
     transform: translateY(-1px);
 }
 
@@ -1219,27 +1277,158 @@ img {
 }
 
 /* ---- Colorized brand badges (pastel bg + brand-tinted text) ---- */
-.skill-tag.t-gcp        { background: #e8f0fe; border-color: #c3dafe; color: #1a73e8; }
-.skill-tag.t-aws        { background: #fff1e0; border-color: #ffd8a8; color: #d97706; }
-.skill-tag.t-k8s        { background: #e8ecfb; border-color: #c7d2fe; color: #3251d9; }
-.skill-tag.t-docker     { background: #e6f3ff; border-color: #bcdfff; color: #1d63ed; }
-.skill-tag.t-helm       { background: #e6f7f5; border-color: #b9ece6; color: #0f766e; }
-.skill-tag.t-terraform  { background: #efe8fd; border-color: #d6c8fb; color: #7b42bc; }
-.skill-tag.t-linux      { background: #fef6e0; border-color: #fbe6ad; color: #a16207; }
-.skill-tag.t-network    { background: #eef2f7; border-color: #d3dce6; color: #475569; }
-.skill-tag.t-jenkins    { background: #fdeaea; border-color: #f8cccc; color: #c9302c; }
-.skill-tag.t-github     { background: #eceef1; border-color: #d0d7de; color: #24292f; }
-.skill-tag.t-rocket     { background: #fdeef0; border-color: #f9ccd4; color: #db2777; }
-.skill-tag.t-pipeline   { background: #e8f0fe; border-color: #c3dafe; color: #1a56db; }
-.skill-tag.t-prometheus { background: #ffece2; border-color: #ffcfb8; color: #e6522c; }
-.skill-tag.t-grafana    { background: #fdf0e6; border-color: #f9d8bd; color: #f46800; }
-.skill-tag.t-health     { background: #fdeef0; border-color: #f9ccd4; color: #e11d48; }
-.skill-tag.t-optimize   { background: #e6f7ee; border-color: #bdeccf; color: #16a34a; }
-.skill-tag.t-python     { background: #eaf1fb; border-color: #cadcf5; color: #2b6cb0; }
-.skill-tag.t-node       { background: #edf7e8; border-color: #d0ebc2; color: #4d8a2f; }
-.skill-tag.t-api        { background: #eef2f7; border-color: #d3dce6; color: #475569; }
-.skill-tag.t-git        { background: #fdece4; border-color: #f9d3bf; color: #de4c26; }
-.skill-tag.t-shell      { background: #ecefe9; border-color: #d5ddca; color: #3f6212; }
+.skill-tag.t-gcp {
+    background: #e8f0fe;
+    border-color: #c3dafe;
+    color: #1a73e8;
+}
+
+.skill-tag.t-aws {
+    background: #fff1e0;
+    border-color: #ffd8a8;
+    color: #d97706;
+}
+
+.skill-tag.t-k8s {
+    background: #e8ecfb;
+    border-color: #c7d2fe;
+    color: #3251d9;
+}
+
+.skill-tag.t-docker {
+    background: #e6f3ff;
+    border-color: #bcdfff;
+    color: #1d63ed;
+}
+
+.skill-tag.t-helm {
+    background: #e6f7f5;
+    border-color: #b9ece6;
+    color: #0f766e;
+}
+
+.skill-tag.t-terraform {
+    background: #efe8fd;
+    border-color: #d6c8fb;
+    color: #7b42bc;
+}
+
+.skill-tag.t-linux {
+    background: #fef6e0;
+    border-color: #fbe6ad;
+    color: #a16207;
+}
+
+.skill-tag.t-network {
+    background: #eef2f7;
+    border-color: #d3dce6;
+    color: #475569;
+}
+
+.skill-tag.t-jenkins {
+    background: #fdeaea;
+    border-color: #f8cccc;
+    color: #c9302c;
+}
+
+.skill-tag.t-github {
+    background: #eceef1;
+    border-color: #d0d7de;
+    color: #24292f;
+}
+
+.skill-tag.t-rocket {
+    background: #fdeef0;
+    border-color: #f9ccd4;
+    color: #db2777;
+}
+
+.skill-tag.t-pipeline {
+    background: #e8f0fe;
+    border-color: #c3dafe;
+    color: #1a56db;
+}
+
+.skill-tag.t-prometheus {
+    background: #ffece2;
+    border-color: #ffcfb8;
+    color: #e6522c;
+}
+
+.skill-tag.t-grafana {
+    background: #fdf0e6;
+    border-color: #f9d8bd;
+    color: #f46800;
+}
+
+.skill-tag.t-health {
+    background: #fdeef0;
+    border-color: #f9ccd4;
+    color: #e11d48;
+}
+
+.skill-tag.t-optimize {
+    background: #e6f7ee;
+    border-color: #bdeccf;
+    color: #16a34a;
+}
+
+.skill-tag.t-python {
+    background: #eaf1fb;
+    border-color: #cadcf5;
+    color: #2b6cb0;
+}
+
+.skill-tag.t-node {
+    background: #edf7e8;
+    border-color: #d0ebc2;
+    color: #4d8a2f;
+}
+
+.skill-tag.t-api {
+    background: #eef2f7;
+    border-color: #d3dce6;
+    color: #475569;
+}
+
+.skill-tag.t-git {
+    background: #fdece4;
+    border-color: #f9d3bf;
+    color: #de4c26;
+}
+
+.skill-tag.t-shell {
+    background: #ecefe9;
+    border-color: #d5ddca;
+    color: #3f6212;
+}
+
+/* ---- Dark mode: derive badge tint from each badge's brand color ----
+   Reuses the `color:` (brand hue) as a translucent fill + border over the
+   dark surface, so brand identity is preserved without 21 per-theme rewrites.
+   Applies only when NOT in light mode. */
+:root:not([data-theme="light"]) .skill-tag[class*="t-"] {
+    background: color-mix(in srgb, currentColor 14%, transparent);
+    border-color: color-mix(in srgb, currentColor 32%, transparent);
+}
+
+/* Brighten the few brand hues that are too dark to read on charcoal */
+:root:not([data-theme="light"]) .skill-tag.t-github {
+    color: #c9d1d9;
+}
+
+:root:not([data-theme="light"]) .skill-tag.t-network,
+:root:not([data-theme="light"]) .skill-tag.t-api {
+    color: #94a3b8;
+}
+
+:root:not([data-theme="light"]) .skill-tag.t-shell {
+    color: #a3c267;
+}
+
+:root:not([data-theme="light"]) .skill-tag.t-linux {
+    color: #d4a72c;
+}
 
 /* ==========================================
    CERTIFICATIONS SECTION (Wellfound Style)
@@ -1315,16 +1504,16 @@ img {
     gap: 18px;
     padding: 22px;
     cursor: pointer;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     transition: all var(--transition-normal);
 }
 
 .cert-card:hover {
-    border-color: #000000;
-    box-shadow: var(--shadow-lg);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg), 0 0 24px var(--accent-glow);
     transform: translateY(-2px);
 }
 
@@ -1337,8 +1526,8 @@ img {
     justify-content: center;
     font-size: 1.2rem;
     flex-shrink: 0;
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
     color: var(--accent-blue);
     overflow: hidden;
 }
@@ -1369,10 +1558,23 @@ img {
 }
 
 .cert-badge.cert-badge-img {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--surface-raised);
+    border: 1px solid var(--border-color);
     padding: 4px;
     overflow: hidden;
+}
+
+/* ---- Dark mode: tint issuer badges from their brand color ---- */
+:root:not([data-theme="light"]) .cert-badge.anthropic,
+:root:not([data-theme="light"]) .cert-badge.google,
+:root:not([data-theme="light"]) .cert-badge.coursera,
+:root:not([data-theme="light"]) .cert-badge.aws {
+    background: color-mix(in srgb, currentColor 14%, transparent);
+    border-color: color-mix(in srgb, currentColor 34%, transparent);
+}
+
+:root:not([data-theme="light"]) .cert-badge.coursera {
+    color: #5a8dee;
 }
 
 .cert-badge img {
@@ -1450,11 +1652,14 @@ img {
    ========================================== */
 .cta-section {
     position: relative;
+    margin-top: 0;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000;
+    /* Night scene stays dark in both themes */
+    --cta-bg: #0d0f10;
+    background: var(--cta-bg);
     overflow: hidden;
 }
 
@@ -1471,28 +1676,10 @@ img {
     object-fit: cover;
     object-position: center;
     opacity: 0.6;
+    transform: scale(1.15);
     will-change: transform;
 }
 
-.cta-gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 140px;
-    background: linear-gradient(to bottom,
-        rgba(250, 250, 250, 1) 0%,
-        rgba(250, 250, 250, 0.738) 19%,
-        rgba(250, 250, 250, 0.481) 34%,
-        rgba(250, 250, 250, 0.283) 47%,
-        rgba(250, 250, 250, 0.148) 59.5%,
-        rgba(250, 250, 250, 0.063) 71%,
-        rgba(250, 250, 250, 0.019) 82%,
-        rgba(250, 250, 250, 0.003) 92%,
-        rgba(250, 250, 250, 0) 100%);
-    z-index: 1;
-    pointer-events: none;
-}
 
 .cta-card-container {
     position: relative;
@@ -1634,21 +1821,21 @@ img {
     width: 38px;
     height: 38px;
     border-radius: 50px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #475569;
+    color: var(--text-secondary);
     transition: all var(--transition-fast);
     font-size: 0.95rem;
     box-shadow: var(--shadow-sm);
 }
 
 .footer-links a:hover {
-    color: #000000;
-    border-color: #000000;
-    background: #ffffff;
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+    background: var(--bg-card-hover);
 }
 
 /* ==========================================
@@ -1661,8 +1848,8 @@ img {
     width: 44px;
     height: 44px;
     border-radius: 50px;
-    background: #000000;
-    color: #ffffff;
+    background: var(--accent-primary);
+    color: var(--bg-primary);
     border: none;
     cursor: pointer;
     display: flex;
@@ -1673,7 +1860,7 @@ img {
     opacity: 0;
     visibility: hidden;
     transition: all var(--transition-normal);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .scroll-top.visible {
@@ -1682,7 +1869,8 @@ img {
 }
 
 .scroll-top:hover {
-    background: #1e293b;
+    background: var(--border-hover);
+    color: var(--text-primary);
     transform: translateY(-2px);
 }
 
@@ -1826,7 +2014,7 @@ img {
 
     .nav-link:hover,
     .nav-link.active {
-        background: #f1f5f9;
+        background: var(--bg-tertiary);
     }
 
     .nav-toggle {
@@ -2362,5 +2550,66 @@ img {
 
     .cta-headline {
         font-size: 1.1rem;
+    }
+}
+
+/* ==========================================
+   THEME TOGGLE BUTTON
+   ========================================== */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: var(--toggle-bg);
+    border: 1px solid var(--border-color);
+    color: var(--toggle-icon);
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: all var(--transition-normal);
+    z-index: 1001;
+}
+
+.theme-toggle:hover {
+    color: var(--accent-cyan-circle);
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 16px var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+/* The navbar groups the toggle + hamburger together on the right */
+.nav-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* ==========================================
+   DARK-NATIVE ENHANCEMENT: gradient section number accent
+   (light mode keeps the flat blue)
+   ========================================== */
+:root:not([data-theme="light"]) .section-number {
+    background: linear-gradient(90deg, var(--accent-cyan-circle), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
     }
 }

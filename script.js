@@ -290,7 +290,7 @@ function initCtaParallax() {
         if (rect.bottom > 0 && rect.top < windowH) {
             const progress = (windowH - rect.top) / (windowH + rect.height);
             const offset = (progress - 0.5) * 100; // -50 to +50
-            bgImg.style.transform = `translateY(${offset}px)`;
+            bgImg.style.transform = `translateY(${offset}px) scale(1.15)`;
         }
 
         requestAnimationFrame(updateParallax);
@@ -369,9 +369,48 @@ function initDiagramModal() {
 }
 
 // ==========================================
+// THEME TOGGLE (dark default, respects OS, persists override)
+// ==========================================
+function initTheme() {
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+    const icon = toggle.querySelector('i');
+
+    const syncIcon = () => {
+        const isLight = root.getAttribute('data-theme') === 'light';
+        if (icon) {
+            icon.classList.toggle('fa-moon', !isLight);
+            icon.classList.toggle('fa-sun', isLight);
+        }
+        toggle.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+    };
+    syncIcon();
+
+    toggle.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) { }
+        syncIcon();
+    });
+
+    // Follow OS changes only while the user hasn't set an explicit preference
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    mq.addEventListener('change', (e) => {
+        let saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (err) { }
+        if (saved !== 'light' && saved !== 'dark') {
+            root.setAttribute('data-theme', e.matches ? 'light' : 'dark');
+            syncIcon();
+        }
+    });
+}
+
+// ==========================================
 // INITIALIZE
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     initHeroReveal();
     initWordReveal();
     initNavbar();

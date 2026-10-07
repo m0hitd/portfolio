@@ -58,7 +58,7 @@
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    --section-padding: 0px 0;
+    --section-padding: 80px 0;
     --container-width: 1100px;
 
     --transition-fast: 0.15s ease;
@@ -166,6 +166,13 @@ img {
 
 .section-alt {
     background: var(--bg-secondary);
+}
+
+/* The badges bento is a full-bleed dark band with its own vertical padding.
+   Drop the section's bottom padding so no strip of section background
+   (white in light mode) shows between the bento and the CTA. */
+#badges {
+    padding-bottom: 0;
 }
 
 .section-title {

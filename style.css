@@ -296,7 +296,7 @@ img {
     background: var(--toggle-bg);
     border: 1px solid var(--border-color);
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(201, 191, 191, 0.3);
     transition: all 0.25s ease;
     z-index: 1001;
 }
@@ -1995,7 +1995,7 @@ img {
         height: 100dvh;
         border-radius: 0;
         padding: 100px 32px 40px;
-        background: rgba(255, 255, 255, 0.98);
+        background: var(--glass-bg);
         backdrop-filter: blur(24px);
         -webkit-backdrop-filter: blur(24px);
         border: none;

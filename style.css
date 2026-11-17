@@ -7,7 +7,7 @@
     /* ---- Backgrounds ---- */
     --bg-primary: #0d0f10;
     /* neutral charcoal base (matches bento) */
-    --bg-secondary: #141517;
+    --bg-secondary: #0d0f10;
     /* card / raised surface */
     --bg-tertiary: #1a1b1d;
     /* pill container */
@@ -70,7 +70,7 @@
    ========================================== */
 :root[data-theme="light"] {
     --bg-primary: #fafafa;
-    --bg-secondary: #ffffff;
+    --bg-secondary: #fafafa;
     --bg-tertiary: #f1f5f9;
     --bg-hero: #baa89c;
 
